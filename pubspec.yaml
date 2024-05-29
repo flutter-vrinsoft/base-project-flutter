@@ -1,7 +1,7 @@
 name: base_project_flutter
 description: "This Project is base project you can read more info in readme file what is included in it."
 publish_to: 'none'
-version: 1.0.0+1  #[ChangeAppVersion]
+version: 1.0.0+1  #[ChangeAppVersion] Read @documentation/flutter.md
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -17,6 +17,8 @@ dev_dependencies:
   flutter_lints: ^3.0.0
 
 flutter:
+  assets:
+    - shorebird.yaml
   uses-material-design: true
 
   
