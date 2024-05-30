@@ -10,6 +10,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  #Storage
+  shared_preferences: ^2.2.3
+
+  #Firebase Notification
+  firebase_core: ^2.32.0
+  firebase_messaging: ^14.9.4
+  flutter_local_notifications: ^17.1.2
+
 dev_dependencies:
   flutter_test:
     sdk: flutter

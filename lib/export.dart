@@ -1,0 +1,9 @@
+export 'package:base_project_flutter/firebase_options.dart';
+export 'package:base_project_flutter/my_app.dart';
+export 'package:base_project_flutter/services/firebase_notification.dart';
+export 'package:base_project_flutter/services/shared_preferences_service.dart';
+export 'package:firebase_core/firebase_core.dart';
+export 'package:firebase_messaging/firebase_messaging.dart';
+export 'package:flutter/material.dart';
+export 'package:flutter/services.dart';
+export 'package:flutter_local_notifications/flutter_local_notifications.dart';
