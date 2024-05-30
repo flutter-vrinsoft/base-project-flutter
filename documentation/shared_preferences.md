@@ -9,6 +9,11 @@ In this guide, we will demonstrate how to store and retrieve data in Flutter usi
 First, add the necessary dependencies to your `pubspec.yaml` file. Include `shared_preferences` for shared preferences and `flutter_lints` for linting.
 
 ```yaml
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.0
+
 dependencies:
   shared_preferences: ^2.2.3
 ```
