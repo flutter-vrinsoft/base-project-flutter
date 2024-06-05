@@ -10,6 +10,7 @@ class AppThemes {
     appBarTheme: _lightAppBarTheme,
     buttonTheme: _lightButtonTheme,
     floatingActionButtonTheme: _lightFabTheme,
+
   );
 
   static final ThemeData darkTheme = ThemeData(
@@ -58,7 +59,7 @@ class AppThemes {
 
   // Private text themes
   static const TextTheme _lightTextTheme = TextTheme(
-    displayLarge: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.black),
+    displayLarge: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.red),
     displayMedium: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.black),
     displaySmall: TextStyle(fontSize: 48.0, fontWeight: FontWeight.normal, color: Colors.black),
     headlineMedium: TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal, color: Colors.black),

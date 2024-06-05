@@ -1,6 +1,5 @@
 import 'package:base_project_flutter/export.dart';
 
-
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
@@ -11,8 +10,12 @@ class MyApp extends StatelessWidget {
       theme: AppThemes.lightTheme,
       darkTheme: AppThemes.darkTheme,
       themeMode: ThemeMode.system,
-      home: const Scaffold(
-        body: Center(child: Text("AmiT")),
+      home: Scaffold(
+        body: Center(
+            child: Text(
+          "AmiT",
+          style: Theme.of(context).textTheme.displayLarge,
+        )),
       ),
     );
   }
