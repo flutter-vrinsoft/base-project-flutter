@@ -11,7 +11,8 @@ import 'package:shared_preferences/shared_preferences.dart';
 // These constants will be prefixed with _k to indicate that they are private constants outside of the SharedPreferencesService class.
 // Global private constants
 const String _kUsernameKey = 'username';
-
+const String _kAuthToken = 'authToken';
+const String _kFcmToken = 'fcmToken';
 
 class SharedPreferencesService {
   static SharedPreferencesService? _instance;
@@ -30,8 +31,10 @@ class SharedPreferencesService {
   // Persist and retrieve username
   String get username => _getData(_kUsernameKey) ?? '';
   set username(String value) => _saveData(_kUsernameKey, value);
-
-
+  String get authToken => _getData(_kAuthToken) ?? '';
+  set authToken(String value) => _saveData(_kAuthToken, value);
+  String get fcmToken => _getData(_kFcmToken) ?? '';
+  set fcmToken(String value) => _saveData(_kFcmToken, value);
 
   // Private generic method for retrieving data from shared preferences
   dynamic _getData(String key) {
