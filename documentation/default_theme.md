@@ -1,202 +1,220 @@
-# Flutter Theme Guide: Dark and Light Modes
+Sure, here’s the updated code with comments explaining the purpose of the first five delegations in the `AppThemes` class.
 
-This guide covers how to define dark and light themes in Flutter, including text themes with their default values and other theming options like text fields, background colors, and input decorations.
+## Flutter Theming with InheritedWidget and ValueNotifier
 
-## 1. Define Dark and Light Themes
-
-First, let's define the basic structure for dark and light themes in Flutter.
+### app_themes.dart
 
 ```dart
 import 'package:flutter/material.dart';
 
-class MyApp extends StatelessWidget {
+class AppThemes extends InheritedWidget {
+  final ValueNotifier<ThemeMode> themeNotifier;
+
+  // Constructor to initialize the InheritedWidget with a ValueNotifier for theme mode
+  const AppThemes({required this.themeNotifier, required super.child, super.key});
+
+  // Method to access the AppThemes instance from the widget tree
+  static AppThemes? of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<AppThemes>();
+
+  // Indicates whether the widget should be rebuilt when dependencies change
   @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: lightTheme,
-      darkTheme: darkTheme,
-      themeMode: ThemeMode.system, // Change to ThemeMode.light or ThemeMode.dark to test
-      home: MyHomePage(),
-    );
-  }
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
+
+  // Define the light theme using ThemeData
+  static final ThemeData lightTheme = ThemeData(
+    brightness: Brightness.light,
+    colorScheme: _lightColorScheme,
+    scaffoldBackgroundColor: _lightColorScheme.background,
+    textTheme: _lightTextTheme,
+    inputDecorationTheme: _lightInputDecorationTheme,
+    appBarTheme: _lightAppBarTheme,
+    buttonTheme: _lightButtonTheme,
+    floatingActionButtonTheme: _lightFabTheme,
+  );
+
+  // Define the dark theme using ThemeData
+  static final ThemeData darkTheme = ThemeData(
+    brightness: Brightness.dark,
+    colorScheme: _darkColorScheme,
+    scaffoldBackgroundColor: _darkColorScheme.background,
+    textTheme: _darkTextTheme,
+    inputDecorationTheme: _darkInputDecorationTheme,
+    appBarTheme: _darkAppBarTheme,
+    buttonTheme: _darkButtonTheme,
+    floatingActionButtonTheme: _darkFabTheme,
+  );
+
+  // Light color scheme for the app
+  static const ColorScheme _lightColorScheme = ColorScheme(
+    primary: Colors.blue,
+    primaryContainer: Colors.blueAccent,
+    secondary: Colors.orange,
+    secondaryContainer: Colors.orangeAccent,
+    surface: Colors.white,
+    background: Colors.white,
+    error: Colors.red,
+    onPrimary: Colors.white,
+    onSecondary: Colors.white,
+    onSurface: Colors.black,
+    onBackground: Colors.black,
+    onError: Colors.white,
+    brightness: Brightness.light,
+  );
+
+  // Dark color scheme for the app
+  static const ColorScheme _darkColorScheme = ColorScheme(
+    primary: Colors.blue,
+    primaryContainer: Colors.blueAccent,
+    secondary: Colors.orange,
+    secondaryContainer: Colors.orangeAccent,
+    surface: Colors.black,
+    background: Colors.black,
+    error: Colors.red,
+    onPrimary: Colors.black,
+    onSecondary: Colors.black,
+    onSurface: Colors.white,
+    onBackground: Colors.white,
+    onError: Colors.black,
+    brightness: Brightness.dark,
+  );
+
+  // Light text theme for the app
+  static const TextTheme _lightTextTheme = TextTheme(
+    displayLarge: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.red),
+    displayMedium: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.black),
+    displaySmall: TextStyle(fontSize: 48.0, fontWeight: FontWeight.normal, color: Colors.black),
+    headlineMedium: TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal, color: Colors.black),
+    headlineSmall: TextStyle(fontSize: 24.0, fontWeight: FontWeight.normal, color: Colors.black),
+    titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
+    titleMedium: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.black),
+    titleSmall: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.black),
+    bodyLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.black),
+    bodyMedium: TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, color: Colors.black),
+    bodySmall: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.black),
+    labelLarge: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.black),
+    labelSmall: TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, color: Colors.black),
+  );
+
+  // Dark text theme for the app
+  static const TextTheme _darkTextTheme = TextTheme(
+    displayLarge: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.white),
+    displayMedium: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.white),
+    displaySmall: TextStyle(fontSize: 48.0, fontWeight: FontWeight.normal, color: Colors.white),
+    headlineMedium: TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal, color: Colors.white),
+    headlineSmall: TextStyle(fontSize: 24.0, fontWeight: FontWeight.normal, color: Colors.white),
+    titleLarge: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
+    titleMedium: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.white),
+    titleSmall: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
+    bodyLarge: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.white),
+    bodyMedium: TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, color: Colors.white),
+    bodySmall: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.white),
+    labelLarge: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
+    labelSmall: TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, color: Colors.white),
+  );
+
+  // Light input decoration theme for the app
+  static final InputDecorationTheme _lightInputDecorationTheme = InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.grey[200],
+    border: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide.none,
+    ),
+    enabledBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide(color: Colors.grey),
+    ),
+    focusedBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide(color: Colors.blue),
+    ),
+  );
+
+  // Dark input decoration theme for the app
+  static final InputDecorationTheme _darkInputDecorationTheme = InputDecorationTheme(
+    filled: true,
+    fillColor: Colors.grey[700],
+    border: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide.none,
+    ),
+    enabledBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide(color: Colors.grey),
+    ),
+    focusedBorder: const OutlineInputBorder(
+      borderRadius: BorderRadius.all(Radius.circular(8.0)),
+      borderSide: BorderSide(color: Colors.blue),
+    ),
+  );
+
+  // Light app bar theme for the app
+  static const AppBarTheme _lightAppBarTheme = AppBarTheme(
+    backgroundColor: Colors.white,
+    iconTheme: IconThemeData(color: Colors.black),
+    titleTextStyle: TextStyle(color: Colors.black, fontSize: 20.0),
+  );
+
+  // Dark app bar theme for the app
+  static const AppBarTheme _darkAppBarTheme = AppBarTheme(
+    backgroundColor: Colors.black,
+    iconTheme: IconThemeData(color: Colors.white),
+    titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0),
+  );
+
+  // Light button theme for the app
+  static const ButtonThemeData _lightButtonTheme = ButtonThemeData(
+    buttonColor: Colors.blue,
+    textTheme: ButtonTextTheme.primary,
+  );
+
+  // Dark button theme for the app
+  static const ButtonThemeData _darkButtonTheme = ButtonThemeData(
+    buttonColor: Colors.blue,
+    textTheme: ButtonTextTheme.primary,
+  );
+
+  // Light floating action button theme for the app
+  static const FloatingActionButtonThemeData _lightFabTheme = FloatingActionButtonThemeData(
+    backgroundColor: Colors.blue,
+  );
+
+  // Dark floating action button theme for the app
+  static const FloatingActionButtonThemeData _darkFabTheme = FloatingActionButtonThemeData(
+    backgroundColor: Colors.blue,
+  );
 }
-
-final ThemeData lightTheme = ThemeData(
-  brightness: Brightness.light,
-  primaryColor: Colors.blue,
-  accentColor: Colors.orange,
-  backgroundColor: Colors.white,
-  scaffoldBackgroundColor: Colors.white,
-  textTheme: lightTextTheme,
-  inputDecorationTheme: lightInputDecorationTheme,
-);
-
-final ThemeData darkTheme = ThemeData(
-  brightness: Brightness.dark,
-  primaryColor: Colors.blue,
-  accentColor: Colors.orange,
-  backgroundColor: Colors.black,
-  scaffoldBackgroundColor: Colors.black,
-  textTheme: darkTextTheme,
-  inputDecorationTheme: darkInputDecorationTheme,
-);
 ```
 
-## 2. Define Text Themes
-
-Here are the text themes for both light and dark modes with their default values:
-
-```dart
-final TextTheme lightTextTheme = TextTheme(
-  headline1: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.black),
-  headline2: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.black),
-  headline3: TextStyle(fontSize: 48.0, fontWeight: FontWeight.normal, color: Colors.black),
-  headline4: TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal, color: Colors.black),
-  headline5: TextStyle(fontSize: 24.0, fontWeight: FontWeight.normal, color: Colors.black),
-  headline6: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.black),
-  subtitle1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.black),
-  subtitle2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.black),
-  bodyText1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.black),
-  bodyText2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, color: Colors.black),
-  caption: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.black),
-  button: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.black),
-  overline: TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, color: Colors.black),
-);
-
-final TextTheme darkTextTheme = TextTheme(
-  headline1: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.white),
-  headline2: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.white),
-  headline3: TextStyle(fontSize: 48.0, fontWeight: FontWeight.normal, color: Colors.white),
-  headline4: TextStyle(fontSize: 34.0, fontWeight: FontWeight.normal, color: Colors.white),
-  headline5: TextStyle(fontSize: 24.0, fontWeight: FontWeight.normal, color: Colors.white),
-  headline6: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold, color: Colors.white),
-  subtitle1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.white),
-  subtitle2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
-  bodyText1: TextStyle(fontSize: 16.0, fontWeight: FontWeight.normal, color: Colors.white),
-  bodyText2: TextStyle(fontSize: 14.0, fontWeight: FontWeight.normal, color: Colors.white),
-  caption: TextStyle(fontSize: 12.0, fontWeight: FontWeight.normal, color: Colors.white),
-  button: TextStyle(fontSize: 14.0, fontWeight: FontWeight.bold, color: Colors.white),
-  overline: TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, color: Colors.white),
-);
-```
-
-## 3. Define Input Decoration Themes
-
-Input decorations for text fields in both light and dark modes:
-
-```dart
-final InputDecorationTheme lightInputDecorationTheme = InputDecorationTheme(
-  filled: true,
-  fillColor: Colors.grey[200],
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    borderSide: BorderSide.none,
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    borderSide: BorderSide(color: Colors.grey),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    borderSide: BorderSide(color: Colors.blue),
-  ),
-);
-
-final InputDecorationTheme darkInputDecorationTheme = InputDecorationTheme(
-  filled: true,
-  fillColor: Colors.grey[700],
-  border: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    borderSide: BorderSide.none,
-  ),
-  enabledBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    borderSide: BorderSide(color: Colors.grey),
-  ),
-  focusedBorder: OutlineInputBorder(
-    borderRadius: BorderRadius.all(Radius.circular(8.0)),
-    borderSide: BorderSide(color: Colors.blue),
-  ),
-);
-```
-
-## 4. Additional Theme Customizations
-
-You can customize other aspects of the theme as needed. Here are some examples:
-
-### App Bar Theme
-
-```dart
-final AppBarTheme lightAppBarTheme = AppBarTheme(
-  color: Colors.white,
-  iconTheme: IconThemeData(color: Colors.black),
-  textTheme: TextTheme(
-    headline6: TextStyle(color: Colors.black, fontSize: 20.0),
-  ),
-);
-
-final AppBarTheme darkAppBarTheme = AppBarTheme(
-  color: Colors.black,
-  iconTheme: IconThemeData(color: Colors.white),
-  textTheme: TextTheme(
-    headline6: TextStyle(color: Colors.white, fontSize: 20.0),
-  ),
-);
-```
-
-### Button Theme
-
-```dart
-final ButtonThemeData lightButtonTheme = ButtonThemeData(
-  buttonColor: Colors.blue,
-  textTheme: ButtonTextTheme.primary,
-);
-
-final ButtonThemeData darkButtonTheme = ButtonThemeData(
-  buttonColor: Colors.blue,
-  textTheme: ButtonTextTheme.primary,
-);
-```
-
-### Floating Action Button Theme
-
-```dart
-final FloatingActionButtonThemeData lightFabTheme = FloatingActionButtonThemeData(
-  backgroundColor: Colors.blue,
-);
-
-final FloatingActionButtonThemeData darkFabTheme = FloatingActionButtonThemeData(
-  backgroundColor: Colors.blue,
-);
-```
-
-## 5. Apply Themes
-
-Finally, apply the themes in your `MaterialApp`:
+### main.dart
 
 ```dart
 import 'package:flutter/material.dart';
+import 'app_themes.dart';
 
 void main() {
   runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  final ValueNotifier<ThemeMode> themeValueNotifier = ValueNotifier(ThemeMode.light);
+
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      theme: lightTheme.copyWith(
-        appBarTheme: lightAppBarTheme,
-        buttonTheme: lightButtonTheme,
-        floatingActionButtonTheme: lightFabTheme,
+    return AppThemes(
+      themeNotifier: themeValueNotifier,
+      child: ValueListenableBuilder<ThemeMode>(
+        valueListenable: themeValueNotifier,
+        builder: (_, themeMode, __) {
+          return MaterialApp(
+            title: 'Flutter Demo',
+            theme: AppThemes.lightTheme,
+            darkTheme: AppThemes.darkTheme,
+            themeMode: themeMode,
+            home: MyHomePage(),
+          );
+        },
       ),
-      darkTheme: darkTheme.copyWith(
-        appBarTheme: darkAppBarTheme,
-        buttonTheme: darkButtonTheme,
-        floatingActionButtonTheme: darkFabTheme,
-      ),
-      themeMode: ThemeMode.system,
-      home: MyHomePage(),
     );
   }
 }
@@ -204,32 +222,29 @@ class MyApp extends StatelessWidget {
 class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final themeNotifier = AppThemes.of(context)!.themeNotifier;
+
     return Scaffold(
       appBar: AppBar(
-        title: Text('Flutter Theme Guide'),
+        title: Text('Flutter Theme Demo'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text('Hello, World!'),
-            TextField(
-              decoration: InputDecoration(labelText: 'Enter your name'),
-            ),
-            ElevatedButton(
-              onPressed: () {},
-              child: Text('Submit'),
+            Text('You can toggle the theme using the button below:'),
+            Switch(
+              value: themeNotifier.value == ThemeMode.dark,
+              onChanged: (value) {
+                themeNotifier.value = value ? ThemeMode.dark : ThemeMode.light;
+              },
             ),
           ],
         ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        child: Icon(Icons.add),
       ),
     );
   }
 }
 ```
 
-By following these steps, you can create a consistent and customizable theme for both dark and light modes in your Flutter application. Adjust the values as needed to fit your design requirements.
+This setup provides a robust way to switch between dark and light themes in your Flutter app using `InheritedWidget` and `ValueNotifier`.

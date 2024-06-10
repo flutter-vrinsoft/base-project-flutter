@@ -1,7 +1,7 @@
 name: base_project_flutter
 description: "This Project is base project you can read more info in readme file what is included in it."
 publish_to: 'none'
-version: 1.0.0+1  #[ChangeAppVersion]
+version: 1.0.1+2  #[ChangeAppVersion]
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -13,14 +13,14 @@ dependencies:
   #storage
   shared_preferences: ^2.2.3
 
+  #utils
+  fk_user_agent: ^2.1.0
+
 dev_dependencies:
   flutter_test:
     sdk: flutter
 
   flutter_lints: ^3.0.0
-
-  #storage
-  shared_preferences: ^2.2.3
 
 flutter:
   uses-material-design: true

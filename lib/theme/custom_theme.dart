@@ -1,6 +1,19 @@
 import 'package:flutter/material.dart';
 
-class AppThemes {
+class AppThemes extends InheritedWidget {
+  final ValueNotifier<ThemeMode> themeNotifier;
+
+  // Constructor to initialize the InheritedWidget with a ValueNotifier for theme mode
+  const AppThemes({required this.themeNotifier, required super.child, super.key});
+
+  // Method to access the AppThemes instance from the widget tree
+  static AppThemes? of(BuildContext context) => context.dependOnInheritedWidgetOfExactType<AppThemes>();
+
+  // Indicates whether the widget should be rebuilt when dependencies change
+  @override
+  bool updateShouldNotify(covariant InheritedWidget oldWidget) => true;
+
+  // Define the light theme using ThemeData
   static final ThemeData lightTheme = ThemeData(
     brightness: Brightness.light,
     colorScheme: _lightColorScheme,
@@ -10,9 +23,9 @@ class AppThemes {
     appBarTheme: _lightAppBarTheme,
     buttonTheme: _lightButtonTheme,
     floatingActionButtonTheme: _lightFabTheme,
-
   );
 
+  // Define the dark theme using ThemeData
   static final ThemeData darkTheme = ThemeData(
     brightness: Brightness.dark,
     colorScheme: _darkColorScheme,
@@ -24,7 +37,7 @@ class AppThemes {
     floatingActionButtonTheme: _darkFabTheme,
   );
 
-  // Private color schemes
+  // Light color scheme for the app
   static const ColorScheme _lightColorScheme = ColorScheme(
     primary: Colors.blue,
     primaryContainer: Colors.blueAccent,
@@ -41,6 +54,7 @@ class AppThemes {
     brightness: Brightness.light,
   );
 
+  // Dark color scheme for the app
   static const ColorScheme _darkColorScheme = ColorScheme(
     primary: Colors.blue,
     primaryContainer: Colors.blueAccent,
@@ -57,7 +71,7 @@ class AppThemes {
     brightness: Brightness.dark,
   );
 
-  // Private text themes
+  // Light text theme for the app
   static const TextTheme _lightTextTheme = TextTheme(
     displayLarge: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.red),
     displayMedium: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.black),
@@ -74,6 +88,7 @@ class AppThemes {
     labelSmall: TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, color: Colors.black),
   );
 
+  // Dark text theme for the app
   static const TextTheme _darkTextTheme = TextTheme(
     displayLarge: TextStyle(fontSize: 96.0, fontWeight: FontWeight.bold, color: Colors.white),
     displayMedium: TextStyle(fontSize: 60.0, fontWeight: FontWeight.bold, color: Colors.white),
@@ -90,7 +105,7 @@ class AppThemes {
     labelSmall: TextStyle(fontSize: 10.0, fontWeight: FontWeight.normal, color: Colors.white),
   );
 
-  // Private input decoration themes
+  // Light input decoration theme for the app
   static final InputDecorationTheme _lightInputDecorationTheme = InputDecorationTheme(
     filled: true,
     fillColor: Colors.grey[200],
@@ -108,6 +123,7 @@ class AppThemes {
     ),
   );
 
+  // Dark input decoration theme for the app
   static final InputDecorationTheme _darkInputDecorationTheme = InputDecorationTheme(
     filled: true,
     fillColor: Colors.grey[700],
@@ -125,35 +141,38 @@ class AppThemes {
     ),
   );
 
-  // Private app bar themes
+  // Light app bar theme for the app
   static const AppBarTheme _lightAppBarTheme = AppBarTheme(
     backgroundColor: Colors.white,
     iconTheme: IconThemeData(color: Colors.black),
     titleTextStyle: TextStyle(color: Colors.black, fontSize: 20.0),
   );
 
+  // Dark app bar theme for the app
   static const AppBarTheme _darkAppBarTheme = AppBarTheme(
     backgroundColor: Colors.black,
     iconTheme: IconThemeData(color: Colors.white),
     titleTextStyle: TextStyle(color: Colors.white, fontSize: 20.0),
   );
 
-  // Private button themes
+  // Light button theme for the app
   static const ButtonThemeData _lightButtonTheme = ButtonThemeData(
     buttonColor: Colors.blue,
     textTheme: ButtonTextTheme.primary,
   );
 
+  // Dark button theme for the app
   static const ButtonThemeData _darkButtonTheme = ButtonThemeData(
     buttonColor: Colors.blue,
     textTheme: ButtonTextTheme.primary,
   );
 
-  // Private floating action button themes
+  // Light floating action button theme for the app
   static const FloatingActionButtonThemeData _lightFabTheme = FloatingActionButtonThemeData(
     backgroundColor: Colors.blue,
   );
 
+  // Dark floating action button theme for the app
   static const FloatingActionButtonThemeData _darkFabTheme = FloatingActionButtonThemeData(
     backgroundColor: Colors.blue,
   );
