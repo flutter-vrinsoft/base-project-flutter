@@ -16,6 +16,8 @@ dependencies:
   #utils
   intl: ^0.19.0
   fk_user_agent: ^2.1.0
+  flutter_svg: ^2.0.10+1
+  cached_network_image: ^3.3.1
 
   #network
   dio: ^5.4.3+1
@@ -38,6 +40,6 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/icon/
-    - assets/font/
+    - assets/icons/
+    - assets/fonts/
     - assets/images/

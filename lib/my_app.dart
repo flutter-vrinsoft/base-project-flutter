@@ -38,8 +38,8 @@ class _MyAppState extends State<MyApp> {
         builder: (_, themeMode, __) {
           return MaterialApp(
             title: 'Flutter Demo',
-            theme: ThemeData.light(), // Replace with your light theme
-            darkTheme: ThemeData.dark(), // Replace with your dark theme
+            theme: AppThemes.lightTheme,
+            darkTheme: AppThemes.darkTheme,
             themeMode: themeMode,
             home: const HomeScreen(),
           );

@@ -1,5 +1,5 @@
 import 'package:base_project_flutter/export.dart';
-
+import 'package:base_project_flutter/utils/extensions/getter_extension.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -16,13 +16,21 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(),
-      drawer: buildDrawer(context),
-      body: const Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [],
+    return BaseScaffold(
+      child: Scaffold(
+        appBar: AppBar(),
+        drawer: buildDrawer(context),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CustomText(
+                text: "Ready To Rock == context.bodyLarge.w500.withColor(ColorConst.kRedColor)",
+                style: context.bodyLarge.w700.withColor(ColorConst.kRedColor),
+                textAlign: TextAlign.center,
+              )
+            ],
+          ),
         ),
       ),
     );

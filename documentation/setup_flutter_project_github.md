@@ -50,7 +50,7 @@ setup_flutter_project() {
   if [ -z "$platforms" ]; then
     platforms="android,ios"
   fi
-
+ove ov 
   echo ""  # Add a blank line for spacing
 
   # Step 1: Create a new Flutter project with specified platforms
