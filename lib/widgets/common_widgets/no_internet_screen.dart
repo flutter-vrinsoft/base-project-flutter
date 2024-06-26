@@ -1,5 +1,4 @@
 import 'package:base_project_flutter/export.dart';
-import 'package:base_project_flutter/utils/constants/image_constants.dart';
 
 class NoInternetScreen extends StatelessWidget {
   const NoInternetScreen({super.key});

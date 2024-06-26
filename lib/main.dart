@@ -16,5 +16,5 @@ void setupNetworkService() {
 setupPrefData() async {
   SharedPreferencesService instance = await SharedPreferencesService.getInstance();
   instance.username = "Amit";
-  String username = instance.username;
+  // String username = instance.username;
 }

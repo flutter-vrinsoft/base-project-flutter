@@ -1,7 +1,7 @@
 name: base_project_flutter
 description: "This Project is base project you can read more info in readme file what is included in it."
 publish_to: 'none'
-version: 1.0.1+2  #[ChangeAppVersion]
+version: 1.0.0+1  #[ChangeAppVersion]
 
 environment:
   sdk: '>=3.3.4 <4.0.0'
@@ -41,5 +41,4 @@ flutter:
 
   assets:
     - assets/icons/
-    - assets/fonts/
     - assets/images/

@@ -1,5 +1,4 @@
 import 'package:base_project_flutter/export.dart';
-import 'package:base_project_flutter/utils/extensions/getter_extension.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
